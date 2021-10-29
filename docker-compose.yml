@@ -1,0 +1,23 @@
+
+version: '3.8'
+
+secrets:
+  account_address:
+    file: ./configs/energi3_account_address
+  account_password:
+    file: ./configs/energi3_account_password
+
+services:
+  core:
+    image: energicryptocurrency/energi3:v3.1.0
+    ports:
+      - 39795:39795
+      - 39796:39796
+      - 39797:39797
+    restart: unless-stopped
+    secrets:
+      - account_address
+      - account_password
+    volumes:
+      - ./core-data:/home/nrgstaker/.energicore3
+
